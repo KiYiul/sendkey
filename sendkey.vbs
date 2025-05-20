@@ -36,9 +36,10 @@ End If
 ' 시간 확인
 currentTime = Now
 currentHour = Hour(currentTime)  ' 현재 시간의 시간 부분 (0-23)
+currentMinute = Minute(currentTime)  ' 현재 분 (0-59)
 
 ' 시간에 맞추어서 키 전송, 8시 ~ 17시에만 전송
-If currentHour >= 8 And currentHour < 17 Then
+If (currentHour >= 8 And currentHour < 12 And currentMinute <= 30) Or (currentHour >= 13 And currentHour < 17) Then
     ' 키 전송 (루프 시작)
     Do
         ' 현재 시간이 17시 이후이면 루프 종료
@@ -58,7 +59,7 @@ If currentHour >= 8 And currentHour < 17 Then
     stream.Position = stream.Size  ' 파일 끝으로 이동
     stream.WriteText "Looping: " & Now & vbCrLf
 	stream.SaveToFile logFile, 2 ' 2는 '쓰기를 추가' 모드
-    Loop
+    Loop Until currentHour >= 17
 End If
 
 ' 파일 닫기
