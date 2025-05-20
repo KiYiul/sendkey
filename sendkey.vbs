@@ -53,19 +53,10 @@ Do
 		stream.Position = stream.Size  ' 파일 끝으로 이동
 		stream.WriteText "Looping: " & Now & vbCrLf
 		stream.SaveToFile logFile, 2 ' 2는 '쓰기를 추가' 모드
-	End If
-
-    ' 종료 시간 확인 (17시 이후에는 SendKeys를 하지 않도록, 루프를 계속)
-    currentTime = Now
-    currentHour = Hour(currentTime)
-    If currentHour >= 17 Then
-        ' 17시 이후에는 키 전송을 하지 않고, 루프를 계속 실행하여 기다리기만 함
+	Else
+	    ' 17시 이후에는 아무 작업도 하지 않고 대기만 한다.
         WScript.Sleep 60000  ' 1분 대기 후 루프 계속
-        Continue Do  ' 루프의 현재 반복을 중단하고, 다음 반복으로 넘어감
-    End If
-
-    ' 10초마다 루프를 돌며 시간 체크
-    WScript.Sleep 10000  ' 10초 대기
+	End If
 Loop
 
 ' 파일 닫기
