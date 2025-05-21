@@ -41,7 +41,7 @@ Do
 	currentMinute = Minute(currentTime)  ' 현재 분 (0-59)
 
 	' 시간에 맞추어서 키 전송, 8시 ~ 17시에만 전송
-	If (currentHour >= 8 And currentHour < 12 And currentMinute <= 30) Or (currentHour >= 13 And currentHour < 17) Then
+	If (currentHour >= 8 And currentHour < 12) Or (currentHour >= 13 And currentHour < 17) Then
 		' 키 전송 (루프 시작)
 		WshShell.SendKeys "{SCROLLLOCK}"
 		WshShell.SendKeys "{SCROLLLOCK}"
