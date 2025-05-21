@@ -54,8 +54,12 @@ Do
 		stream.WriteText "Looping: " & Now & vbCrLf
 		stream.SaveToFile logFile, 2 ' 2는 '쓰기를 추가' 모드
 	Else
-	    ' 17시 이후에는 아무 작업도 하지 않고 대기만 한다.
+	    ' 12-13시 사이 및 17시 이후에는 아무 작업도 하지 않고 대기만 한다.
         WScript.Sleep 60000  ' 1분 대기 후 루프 계속
+		' 로그 기록
+		stream.Position = stream.Size  ' 파일 끝으로 이동
+		stream.WriteText "Waiting: " & Now & vbCrLf
+		stream.SaveToFile logFile, 2 ' 2는 '쓰기를 추가' 모드
 	End If
 Loop
 
