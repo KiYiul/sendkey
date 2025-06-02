@@ -1,4 +1,4 @@
-' 2025-05-21
+' 2025-06-02
 ' kiyiul@asianaidt.com
 ' 주기적으로 sendkey 사용
 
@@ -10,7 +10,8 @@ Dim logFile, fso, stream, userProfile, currentDate, WshShell
 Set objShell = CreateObject("WScript.Shell")
 userProfile = objShell.ExpandEnvironmentStrings("%USERPROFILE%")
 currentDate = Year(Now) & "-" & Right("00" & Month(Now), 2) & "-" & Right("00" & Day(Now), 2)
-logFile = userProfile & "\WorkTime_" & currentDate & ".log"
+'logFile = userProfile & "\WorkTime_" & currentDate & ".log"
+logFile = userProfile & "\WorkTime.log" ' file을 하나로 합침
 
 ' 객체 생성
 Set fso = CreateObject("Scripting.FileSystemObject")
